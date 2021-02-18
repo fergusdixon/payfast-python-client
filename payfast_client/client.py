@@ -19,6 +19,14 @@ class PayfastClient:
         merchant_passphrase: str,
         url: str = "https://api.payfast.co.za",
     ) -> None:
+        """
+        Create a Payfast Client
+        :param version:
+        :param testing_mode:
+        :param merchant_id:
+        :param merchant_passphrase:
+        :param url:
+        """
         self.version = version
         self.testing_mode = testing_mode
         self.merchant_id = str(merchant_id)
@@ -34,6 +42,7 @@ class PayfastClient:
     def _generate_signature(self, payload_dict: dict) -> str:
         """
         Generate the signature salted with the passphrase
+
         https://developers.payfast.co.za/api#authentication
         :param payload_dict:
         :return: signature
