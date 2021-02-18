@@ -21,6 +21,7 @@ class PayfastClient:
     ) -> None:
         """
         Create a Payfast Client
+
         :param version:
         :param testing_mode:
         :param merchant_id:
