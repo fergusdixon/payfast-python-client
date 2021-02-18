@@ -1,9 +1,9 @@
 import hashlib
 import urllib
+import urllib.parse
 from asyncio import Future
 from datetime import date, datetime
 from typing import Dict, Union
-from urllib.parse import urlencode
 
 import pytz
 from requests_futures.sessions import FuturesSession
