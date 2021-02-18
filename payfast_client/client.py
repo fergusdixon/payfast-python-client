@@ -40,7 +40,8 @@ class PayfastClient:
         }
 
     def _generate_signature(self, payload_dict: dict) -> str:
-        """Generate the signature salted with the passphrase
+        """
+        Generate the signature salted with the passphrase
 
         https://developers.payfast.co.za/api#authentication
         :param payload_dict:
