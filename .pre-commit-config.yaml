@@ -3,7 +3,6 @@ repos:
     rev: "db98579"
     hooks:
       - id: pycln
-        args: [--config=pyproject.toml]
   - repo: https://github.com/timothycrosley/isort
     rev: 5.7.0
     hooks:
