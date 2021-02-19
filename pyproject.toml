@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "payfast-client"
-version = "0.1.1"
+version = "0.1.2"
 description = "Python client for interacting with the Payfast API"
 authors = ["Fergus Strangways-Dixon <fergusdixon101@gmail.com>"]
 include = ["payfast_client/py.typed"]
