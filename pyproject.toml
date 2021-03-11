@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "payfast-client"
-version = "0.1.2"
+version = "0.1.3"
 description = "Python client for interacting with the Payfast API"
 authors = ["Fergus Strangways-Dixon <fergusdixon101@gmail.com>"]
 include = ["payfast_client/py.typed"]
@@ -13,10 +13,10 @@ keywords = ["payfast"]
 python = "^3.7"
 requests-futures = "^1.0.0"
 pytz = "^2021.1"
-pytest-cov = "^2.11.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
+pytest-cov = "^2.11.1"
 pre-commit = "^2.10.1"
 freezegun = "^1.1.0"
 
