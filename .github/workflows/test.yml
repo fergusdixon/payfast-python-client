@@ -27,7 +27,10 @@ jobs:
         poetry-version: 1.1.5
     - name: Install dependencies
       run: |
-        poetry install
+        poetry install --no-root
     - name: Run pre-commit checks
       run: |
         poetry run pre-commit run --all
+    - name: Run pytest
+      run: |
+        poetry run pytest
