@@ -26,3 +26,7 @@ repos:
     rev: v0.800  # Use the sha / tag you want to point at
     hooks:
       - id: mypy
+  - repo: git://github.com/FalconSocial/pre-commit-mirrors-pep257
+    rev: v0.3.3
+    hooks:
+      - id: pep257

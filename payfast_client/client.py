@@ -1,3 +1,5 @@
+"""The Payfast Python Client."""
+
 import hashlib
 import urllib
 import urllib.parse
@@ -10,6 +12,8 @@ from requests_futures.sessions import FuturesSession
 
 
 class PayfastClient:
+    """The PayfastClient to make calls to their API."""
+
     def __init__(
         self,
         *,
@@ -20,7 +24,7 @@ class PayfastClient:
         url: str = "https://api.payfast.co.za",
     ) -> None:
         """
-        Create a Payfast Client
+        Create a Payfast Client.
 
         :param version:
         :param testing_mode:
@@ -42,7 +46,7 @@ class PayfastClient:
 
     def _generate_signature(self, payload_dict: dict) -> str:
         """
-        Generate the signature salted with the passphrase
+        Generate the signature salted with the passphrase.
 
         https://developers.payfast.co.za/api#authentication
         :param payload_dict:
@@ -61,7 +65,8 @@ class PayfastClient:
 
     def _send_get_request(self, *, path: str, params: dict) -> Future:
         """
-        Sends a get request, and generates the required headers
+        Send a get request, and generates the required headers.
+
         :param path:
         :param params:
         :return:
@@ -75,7 +80,8 @@ class PayfastClient:
 
     def _send_put_request(self, *, path: str, params: dict, body: dict) -> Future:
         """
-        Sends a put request, and generates the required headers
+        Send a put request, and generates the required headers.
+
         :param path:
         :param params:
         :return:
@@ -92,7 +98,8 @@ class PayfastClient:
 
     def _send_patch_request(self, *, path: str, params: dict, body: dict) -> Future:
         """
-        Sends a patch request, and generates the required headers
+        Send a patch request, and generates the required headers.
+
         :param path:
         :param params:
         :return:
@@ -109,7 +116,9 @@ class PayfastClient:
 
     def _get_headers(self) -> dict:
         """
-        Generate the required headers:
+        Generate the required headers.
+
+        These are:
         - merchant-id
         - version
         - timestamp
@@ -127,7 +136,8 @@ class PayfastClient:
 
     def ping(self) -> Future:
         """
-        Ping
+        Ping.
+
         Used to check if the API is responding to requests.
         :return: The response
         """
@@ -136,6 +146,8 @@ class PayfastClient:
 
     def fetch_subscription(self, *, token: str) -> Future:
         """
+        Fetch a Subscription.
+
         This is the object representing your subscription.
         You can retrieve it to see the details of your subscription.
         :param token:
@@ -160,6 +172,8 @@ class PayfastClient:
 
     def pause_subscription(self, *, token: str, cycles: int = 1) -> Future:
         """
+        Pause a subscription.
+
         Should a subscription be paused the remaining payments (cycles) will remain untouched. The end date of the
         subscription moves on by the number of paused frequency period(s). Effectively the customer gains a payment
         gap and the number of payments will still be the same as originally requested. A free month(s) could be
@@ -172,6 +186,7 @@ class PayfastClient:
     def unpause_subscription(self, *, token: str) -> Future:
         """
         Unpause a subscription.
+
         :param token:
         :return:
         """
@@ -180,7 +195,8 @@ class PayfastClient:
 
     def cancel_subscription(self, *, token: str) -> Future:
         """
-        This will cancel a subscription entirely.
+        Cancel a subscription entirely.
+
         When a subscription is cancelled the customer will be notified of this via email.
         :param token:
         :return:
@@ -198,7 +214,8 @@ class PayfastClient:
         amount_in_cents: int = None,
     ) -> Future:
         """
-        This allows for multiple subscription values to be updated.
+        Update multiple subscription values. Fields with None will be ignored.
+
         At least one field must be present
         :param token:
         :param cycles:
@@ -221,4 +238,4 @@ class PayfastClient:
             raise ValueError("At least one field must be set in update_subscription.")
 
         path = f"/subscriptions/{token}/update"
-        return self._send_patch_request(path=path, params={}, body={})
+        return self._send_patch_request(path=path, params={}, body=body)
