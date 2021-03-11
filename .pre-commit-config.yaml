@@ -27,6 +27,6 @@ repos:
     hooks:
       - id: mypy
   - repo: git://github.com/FalconSocial/pre-commit-mirrors-pep257
-    sha: v0.3.3
+    rev: v0.3.3
     hooks:
       - id: pep257
