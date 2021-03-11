@@ -34,7 +34,6 @@ jobs:
     - name: Run pytest
       run: |
         poetry run pytest --cov=payfast_client --cov-report=xml
-    - uses: actions/checkout@master
     - name: Run codacy-coverage-reporter
       uses: codacy/codacy-coverage-reporter-action@master
       with:
