@@ -7,7 +7,7 @@ from unittest.mock import MagicMock
 import pytest
 from freezegun import freeze_time
 
-from payfast_client import PayfastClient, __version__
+from payfast_client import PayfastClient
 
 TIME_STR = "2021-03-11T13:34:01+02:00"
 
@@ -55,7 +55,7 @@ def test_payfast_fetch_subscription(client: PayfastClient):
     :return:
     """
     client.session.get = MagicMock(return_value=Future())
-    token = "123"
+    token = "test"
     client.fetch_subscription(token=token)
     client.session.get.assert_called_once_with(
         f"test_api/subscriptions/{token}/fetch",
@@ -78,7 +78,7 @@ def test_payfast_pause_subscription(client: PayfastClient):
     :return:
     """
     client.session.put = MagicMock(return_value=Future())
-    token = "123"
+    token = "test"
     client.pause_subscription(token=token, cycles=5)
     client.session.put.assert_called_once_with(
         f"test_api/subscriptions/{token}/pause",
@@ -103,7 +103,7 @@ def test_payfast_unpause_subscription(client: PayfastClient):
     :return:
     """
     client.session.put = MagicMock(return_value=Future())
-    token = "123"
+    token = "test"
     client.unpause_subscription(token=token)
     client.session.put.assert_called_once_with(
         f"test_api/subscriptions/{token}/unpause",
@@ -128,7 +128,7 @@ def test_payfast_cancel_subscription(client: PayfastClient):
     :return:
     """
     client.session.put = MagicMock(return_value=Future())
-    token = "123"
+    token = "test"
     client.cancel_subscription(token=token)
     client.session.put.assert_called_once_with(
         f"test_api/subscriptions/{token}/cancel",
@@ -153,7 +153,7 @@ def test_payfast_update_subscription(client: PayfastClient):
     :return:
     """
     client.session.patch = MagicMock(return_value=Future())
-    token = "123"
+    token = "test"
     client.update_subscription(
         token=token,
         cycles=2,
@@ -184,7 +184,7 @@ def test_payfast_update_subscription_no_body_fails(client: PayfastClient):
     """
     client.session.patch = MagicMock(return_value=Future())
     with pytest.raises(ValueError) as error:
-        token = "123"
+        token = "test"
         client.update_subscription(
             token=token,
         )
