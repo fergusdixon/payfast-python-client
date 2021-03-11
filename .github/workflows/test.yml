@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.7, 3.8, 3.9]
+        python-version: [3.7]
 
     steps:
     - uses: actions/checkout@v2
@@ -33,4 +33,10 @@ jobs:
         poetry run pre-commit run --all
     - name: Run pytest
       run: |
-        poetry run pytest
+        poetry run pytest --cov=payfast_client --cov-report=xml
+    - uses: actions/checkout@master
+    - name: Run codacy-coverage-reporter
+      uses: codacy/codacy-coverage-reporter-action@master
+      with:
+        project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+        coverage-reports: coverage.xml
